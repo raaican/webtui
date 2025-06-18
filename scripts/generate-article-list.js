@@ -1,27 +1,29 @@
-import fs from 'fs';
+// scripts/generate-article-list.js
+import fs from 'fs/promises';
 import path from 'path';
 import fm from 'front-matter';
 
-const articlesDir = path.resolve('public/articles');
-const outputPath = path.resolve('./src/articles.json');
+async function main() {
+  const dir = path.resolve('public/articles');
+  const files = (await fs.readdir(dir)).filter(f => f.endsWith('.md'));
+  const articles = [];
 
-const files = fs.readdirSync(articlesDir).filter(file => file.endsWith('.md'));
+  for (const file of files) {
+    const raw = await fs.readFile(path.join(dir, file), 'utf-8');
+    const { attributes } = fm(raw);
+    articles.push({
+      slug: file.replace(/\.md$/, ''),
+      title: attributes.title,
+      date: attributes.date,
+    });
+  }
 
-const articles = files.map(file => {
-  const slug = file.replace(/\.md$/, '');
-  const rawContent = fs.readFileSync(path.join(articlesDir, file), 'utf-8');
-  const parsed = fm(rawContent);
+  await fs.writeFile(
+    path.resolve('src/articles.json'),
+    JSON.stringify(articles, null, 2)
+  );
 
-  return {
-    slug,
-    title: parsed.attributes.title || slug,
-    date: parsed.attributes.date || 'Unknown',
-  };
-});
+  console.log(`Generated ${articles.length} articles.json entries`);
+}
 
-// Optional: sort by newest date
-articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-fs.writeFileSync(outputPath, JSON.stringify(articles, null, 2));
-console.log(`Generated ${articles.length} article(s).`);
-
+main();

@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import ArticleList from './components/ArticleList';
-import ArticleViewer from './components/ArticleViewer';
+import ArticleWrapper from './pages/ArticleWrapper.jsx'; './components/ArticleViewer';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<ArticleList />} />
-          <Route path="/articles/:slug" element={<ArticleViewer />} />
+          <Route path="/articles/:slug" element={<ArticleWrapper />} />
         </Routes>
       </div>
     </body>
