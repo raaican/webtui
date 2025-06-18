@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
-import Home from './pages/Home.jsx';
-import Articles from './pages/Articles.jsx';
+import ArticleList from './components/ArticleList';
+import ArticleViewer from './components/ArticleViewer';
 
 function App() {
   return (
@@ -9,8 +9,8 @@ function App() {
       <div className="bg-surface min-h-screen text-text font-jetbrains">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/articles" element={<Articles />} />
+          <Route path="/" element={<ArticleList />} />
+          <Route path="/articles/:slug" element={<ArticleViewer />} />
         </Routes>
       </div>
     </body>
