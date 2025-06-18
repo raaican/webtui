@@ -1,4 +1,3 @@
-// scripts/generate-article-list.js
 import fs from 'fs/promises';
 import path from 'path';
 import fm from 'front-matter';

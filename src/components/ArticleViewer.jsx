@@ -29,7 +29,7 @@ export default function ArticleViewer({ slug }) {
   }, [slug]);
 
   return (
-    <article className="mx-auto text-4xl font-jetbrains p-4">
+    <article className="mx-auto text-4xl font-jetbrains p-4 text-justify">
       <h1 className="mx-auto">{metadata.title || 'Untitled'}</h1>
       <p className="text-sm text-gray-500">{metadata.date ? new Date(metadata.date).toLocaleDateString() : 'No date'}</p>
       <div className="prose prose-invert text-accent">

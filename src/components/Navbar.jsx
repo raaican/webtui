@@ -6,7 +6,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between w-full">
         <Link to="/" className="flex items-center gap-1 text-accent">
           <span className="font-bold text-green-400">&lt;/#&gt;</span>
-          <span className="hidden min-[301px]:inline">raican's Notes</span>
+          <span className="hidden min-[317px]:inline">raican's Notes</span>
         </Link>
 
         <div className="flex items-center gap-3">
@@ -14,6 +14,15 @@ export default function Navbar() {
             <span>📄</span>
             <span className="hidden sm:inline pl-1">Articles</span>
           </Link>
+          <a
+            href="https://github.com/raaican/webtui"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            <span>🐙</span>
+            <span className="hidden sm:inline pl-1">Github</span>
+          </a>
           <button className="border border-border bg-[#313244] text-white px-2 py-1 rounded hover:border-white flex items-center">
             🔍
           </button>
